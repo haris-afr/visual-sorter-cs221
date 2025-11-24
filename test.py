@@ -13,7 +13,6 @@ a = np.array([1, 2, 5, 6, 3, 4])
 b = np.array ([1, 2, 3, 4, 5, 6])
 sizeA = len(a)
 plt.bar(a, b)
-plt.show()
 #test using binary sort
 for i in range(sizeA):
     for j in range(sizeA-1):
@@ -21,6 +20,9 @@ for i in range(sizeA):
             temp = a[j+1]
             a[j+1] = a[j]
             a[j] = temp
+        plt.clf()
+        plt.draw()
+        plt.pause(0.5)
 
 plt.ioff()
 plt.show()
