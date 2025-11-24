@@ -1,20 +1,26 @@
-# This project requires the "pandas" library.
-# In case it is not installed please follow the instructions on the pandas website
-# https://pandas.pydata.org/docs/getting_started/install.html
+# This project requires the "pandas" and "matplotlib" libraries.
+# In case either is not installed please follow the instructions on their respective websites
+# https://pandas.pydata.org/docs/getting_started/install.html   <--- pandas
+# https://matplotlib.org/stable/users/getting_started/          <--- matplotlib
 
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 import tkinter
+import time
 
-a = [1, 2, 5, 6, 3]
+a = np.array([1, 2, 5, 6, 3, 4])
+b = np.array ([1, 2, 3, 4, 5, 6])
 sizeA = len(a)
-va1 = pd.Series(a)
-print(va1)
-
+plt.bar(a, b)
+plt.show()
+#test using binary sort
 for i in range(sizeA):
     for j in range(sizeA-1):
-        if (va1[j + 1] < va1[j]):
-            temp = va1[j+1]
-            va1[j+1] = va1[j]
-            va1[j] = temp
+        if (a[j + 1] < a[j]):
+            temp = a[j+1]
+            a[j+1] = a[j]
+            a[j] = temp
 
-print (va1)
+plt.ioff()
+plt.show()
