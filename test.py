@@ -11,12 +11,12 @@
 # import mouse #user input, may be redundant due to tkinter
 #--------------------------------------------------------------
 
-import matplotlib.pyplot as plt #drawing graphs
+import matplotlib.pyplot as plt #drawing/generating graphs
 import numpy as np #used for arrays
 import tkinter #GUI 
 
 
-values = np.array([1, 2, 5, 6, 3, 4])
+values = np.array([1, 10, 2, 15, 25, 4])
 indices = np.array ([1, 2, 3, 4, 5, 6])
 sizeA = len(values)
 
@@ -35,8 +35,5 @@ for i in range(sizeA):
         plt.clf()
         plt.bar(values, indices)    
         plt.savefig(f"visual-sorter-cs221/saved_figures/fig_{i}_{j}")
-        # plt.pause(0.5)
     if (inner_loop_called == 0):
         break
-
-# plt.show()
