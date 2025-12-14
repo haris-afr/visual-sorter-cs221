@@ -16,22 +16,27 @@ import numpy as np #used for arrays
 import tkinter #GUI 
 
 
-a = np.array([1, 2, 5, 6, 3, 4])
-b = np.array ([1, 2, 3, 4, 5, 6])
-sizeA = len(a)
+values = np.array([1, 2, 5, 6, 3, 4])
+indices = np.array ([1, 2, 3, 4, 5, 6])
+sizeA = len(values)
 
 plt.ioff()
 plt.draw()
 
 #test using binary sort
 for i in range(sizeA):
+    inner_loop_called = 0
     for j in range(sizeA-1):
-        if (a[j + 1] < a[j]):
-            temp = a[j+1]
-            a[j+1] = a[j]
-            a[j] = temp
+        if (values[j + 1] < values[j]):
+            temp = values[j+1]
+            values[j+1] = values[j]
+            values[j] = temp
+            inner_loop_called = 1
         plt.clf()
-        plt.bar(a, b)
-        plt.pause(0.5)
+        plt.bar(values, indices)    
+        plt.savefig(f"visual-sorter-cs221/saved_figures/fig_{i}_{j}")
+        # plt.pause(0.5)
+    if (inner_loop_called == 0):
+        break
 
-plt.show()
+# plt.show()
