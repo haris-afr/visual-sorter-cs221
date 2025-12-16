@@ -99,3 +99,17 @@ def bst_sort(arr):
                         curr.right = TreeNode(num)
                         break
                     curr = curr.right
+
+        plt.clf() 
+        plt.axis('off') 
+        coords, lines = get_coords(root, 0, 0, 4)
+        for p1, p2 in lines:
+            plt.plot([p1[0], p2[0]], [p1[1], p2[1]], 'k-', zorder=1)
+        xs = [c[0] for c in coords]
+        ys = [c[1] for c in coords]
+        plt.scatter(xs, ys, s=1000, c='skyblue', edgecolors='black', zorder=2)
+        for x, y, val in coords:
+            plt.text(x, y, str(val), ha='center', va='center', fontweight='bold', zorder=3)
+        plt.savefig(f"saved_figures/fig_{loop_called}.png")
+        loop_called += 1
+    return loop_called
