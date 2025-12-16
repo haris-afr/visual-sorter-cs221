@@ -89,6 +89,18 @@ def selection_sort(arr):
         #Add screenshot here
     #Final screenshot here
    
+def start_Algo():
+    inputArr = [int(x) for x in arrayInputLabel.get().split(',')]
+    algorithm = selectedAlg.get()
+
+    if algorithm == "Bubble Sort":
+        bubble_sort(inputArr)
+
+    elif algorithm == "Insertion Sort":
+        insertion_sort(inputArr)
+
+    elif algorithm == "Selection Sort":
+        selection_sort(inputArr)
 
 
 mainWindow.mainloop()
