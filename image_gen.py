@@ -63,3 +63,18 @@ class TreeNode:
         self.left = None
         self.right = None
 
+def get_coords(node, x, y, dx):
+    if not node: return [], []
+    coords = [(x, y, node.val)]
+    lines = []
+    if node.left:
+        lines.append(((x,y), (x-dx, y-1)))
+        c, l = get_coords(node.left, x-dx, y-1, dx/2)
+        coords += c
+        lines += l
+    if node.right:
+        lines.append(((x,y), (x+dx, y-1)))
+        c, l = get_coords(node.right, x+dx, y-1, dx/2)
+        coords += c
+        lines += l
+    return coords, lines
