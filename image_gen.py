@@ -78,3 +78,24 @@ def get_coords(node, x, y, dx):
         coords += c
         lines += l
     return coords, lines
+
+def bst_sort(arr):
+    arr = np.array(arr)
+    root = None
+    loop_called = 0
+    for num in arr:
+        if not root:
+            root = TreeNode(num)
+        else:
+            curr = root
+            while True:
+                if num < curr.val:
+                    if curr.left is None:
+                        curr.left = TreeNode(num)
+                        break
+                    curr = curr.left
+                else:
+                    if curr.right is None:
+                        curr.right = TreeNode(num)
+                        break
+                    curr = curr.right
