@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import font
-import customtkinter as ctk
+import customtkinter as ctk #main GUI library
 from PIL import Image #for image 
 from image_gen import * #import functions from other file
 import re #regex for checking array
@@ -78,7 +78,7 @@ def changeToScene1():
 def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel):
     global textA
     textA = textbox.get('0.0', 'end')
-    textA = re.findall("^\[\d+(?:,\s*\d+)*\]$", textA)
+    textA = re.findall("^\[\d+(?:,\s*\d+)*\]$", textA) # type: ignore
     if (textA.__len__() == 0):
         errorLabel.pack()
     else:
@@ -149,7 +149,6 @@ arrayInputLabel = ctk.CTkLabel(arrayFrame, text="Input Array", font=label_font)
 arrayTextBox = ctk.CTkTextbox(arrayFrame, height = 100)
 
 errorLabel = ctk.CTkLabel(mainWindow, text="Error! Incorrect Array!", font=label_font)
-
 runButton = ctk.CTkButton(mainWindow, text='Run', command=lambda: getText(arrayTextBox, errorLabel))
 
 #creating elements for scene 2
