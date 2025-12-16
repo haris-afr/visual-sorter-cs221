@@ -13,7 +13,6 @@
 
 import matplotlib.pyplot as plt #drawing/generating graphs
 import numpy as np #used for arrays
-import tkinter #GUI 
 
 
 values = np.array([1, 10, 2, 15, 25, 4])

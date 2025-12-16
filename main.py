@@ -1,8 +1,10 @@
 import tkinter as tk
 from tkinter import font
 import customtkinter as ctk
-from PIL import Image, ImageTk
+from PIL import Image
 import re #regex
+from image_gen import *
+from ast import literal_eval
 
 #creating window
 mainWindow = ctk.CTk()
@@ -21,8 +23,9 @@ global imageVar
 global imageTKVar
 currentImageIndex = 0
 totalImages = 19 # CHANGE
-imageVar = Image.open(f"saved_figures/fig_{currentImageIndex}.png")
+imageVar = Image.open(f"saved_figures/fig_eg.png")
 imageTKVar = ctk.CTkImage(light_image=imageVar, dark_image=imageVar, size=(400,350))
+imageLabel = ctk.CTkLabel(mainWindow, image=imageTKVar, text="")
 
 #loading fonts
 ctk.FontManager.load_font("fonts/Courier_Prime/CourierPrime.ttf")
@@ -45,6 +48,9 @@ def changeToScene2():
     arrayTextBox.pack_forget()
     arrayFrame.pack_forget()
     runButton.pack_forget()
+
+    chooseAlgorithm()
+    loadImage()
 
     imageLabel.pack()
     backBtn.pack(side="left")
@@ -89,7 +95,6 @@ def loadImage():
     imageTKVar.configure(light_image=imageVar, dark_image=imageVar, size=(400,350))
     print(currentImageIndex)
 
-
 def nextFrame():
     global currentImageIndex
     global totalImages
@@ -103,6 +108,31 @@ def prevFrame():
     if (currentImageIndex <= 0): return
     currentImageIndex -= 1
     loadImage()
+
+def chooseAlgorithm():
+    global textA
+    global totalImages
+    textA = textA[0]
+    textA = literal_eval(textA)
+    match(selectedAlg.get()):
+        case "Bubble Sort":
+            totalImages = bubble_sort(textA)
+            print(totalImages)
+        case "Insertion Sort":
+            pass
+        case "Selection Sort":
+            pass
+        case "Count Sort":
+            pass
+        case "Quick Sort":
+            pass
+        case "Merge Sort":
+            pass
+        case "Custom":
+            pass
+        case "":
+            pass
+
 
 #creating elements
 headingLabel = ctk.CTkLabel(mainWindow, text="DSA Visualizer", font=heading_font)
@@ -122,7 +152,7 @@ runButton = ctk.CTkButton(mainWindow, text='Run', command=lambda: getText(arrayT
 
 #creating elements for scene 2
 #image
-imageLabel = ctk.CTkLabel(mainWindow, image=imageTKVar, text="")
+
 buttonsFrame = ctk.CTkFrame(mainWindow, fg_color="transparent")
 prevBtn = ctk.CTkButton(buttonsFrame, text="<", command=lambda: prevFrame())
 nextBtn = ctk.CTkButton(buttonsFrame, text=">", command=lambda: nextFrame())
@@ -130,24 +160,18 @@ backBtn = ctk.CTkButton(buttonsFrame, text="Go Back", command=lambda: changeToSc
 
 
 #displaying all of the elements
-imageLabel.pack()
-backBtn.pack(side="left")
-prevBtn.pack(side="left")
-nextBtn.pack(side="left")
-buttonsFrame.pack()
+headingLabel.pack(pady="10px")
 
-# headingLabel.pack(pady="10px")
+elementPadding = 10
+algorithmSelectLabel.pack(side="left", padx=f"{elementPadding}px")
+algorithmList.pack(side="left", padx=f"{elementPadding}px")
+algorithmFrame.pack(pady="15px")
 
-# elementPadding = 10
-# algorithmSelectLabel.pack(side="left", padx=f"{elementPadding}px")
-# algorithmList.pack(side="left", padx=f"{elementPadding}px")
-# algorithmFrame.pack(pady="15px")
+arrayInputLabel.pack(side="left")
+arrayTextBox.pack()
+arrayFrame.pack(pady='15px')
 
-# arrayInputLabel.pack(side="left")
-# arrayTextBox.pack()
-# arrayFrame.pack(pady='15px')
-
-# runButton.pack()
+runButton.pack()
 
 
 mainWindow.mainloop()
