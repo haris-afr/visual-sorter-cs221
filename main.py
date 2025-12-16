@@ -98,7 +98,7 @@ def loadImage():
 def nextFrame():
     global currentImageIndex
     global totalImages
-
+    
     if (currentImageIndex == (totalImages-1)): return
     currentImageIndex += 1
     loadImage()

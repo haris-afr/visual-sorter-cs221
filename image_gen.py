@@ -3,7 +3,8 @@ import numpy as np #used for arrays
 
 def take_screenshot(loop_called, arr, indices):
     plt.clf()
-    plt.bar(arr, indices)    
+    barC = plt.bar(indices, arr, width=2/len(arr))
+    plt.bar_label(barC, arr)
     plt.savefig(f"saved_figures/fig_{loop_called}")
     return (loop_called + 1)
 
@@ -38,7 +39,6 @@ def insertion_sort(arr):
     loop_called = take_screenshot(loop_called, arr, indices)
     return loop_called
 
-print(insertion_sort([9, 8, 7, 6]))
 
 def selection_sort(arr):
     arr = np.array(arr)
@@ -54,3 +54,4 @@ def selection_sort(arr):
         arr[i],arr[min_index] = arr[min_index],arr[i]
         loop_called = take_screenshot(loop_called, arr, indices)
     loop_called = take_screenshot(loop_called, arr, indices)
+print(bubble_sort([9, 8, 7, 6, 10, 2]))
