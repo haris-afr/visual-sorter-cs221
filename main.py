@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import font
 import customtkinter as ctk
-from PIL import Image
-import re #regex
-from image_gen import *
-from ast import literal_eval
+from PIL import Image #for image 
+from image_gen import * #import functions from other file
+import re #regex for checking array
+from ast import literal_eval #convert string array into actual array
 
 #creating window
 mainWindow = ctk.CTk()
@@ -98,7 +98,7 @@ def loadImage():
 def nextFrame():
     global currentImageIndex
     global totalImages
-    
+
     if (currentImageIndex == (totalImages-1)): return
     currentImageIndex += 1
     loadImage()
