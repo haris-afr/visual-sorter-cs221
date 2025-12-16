@@ -56,6 +56,44 @@ def selection_sort(arr):
     loop_called = take_screenshot(loop_called, arr, indices)
     return loop_called
 
+def mergeSort (arr):
+    arr = np.array(arr)
+    indices = np.array([i+1 for i in range(len(arr))])
+    loop_called = 0
+
+    if len (arr) > 1:
+        mid = len (arr) // 2
+        L = arr[:mid]
+        R = arr[mid:]
+
+        mergeSort (L)
+        mergeSort (R)
+
+        i = j = k = 0
+
+        while i < len (L) and j < len (R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+                loop_called = take_screenshot(loop_called, arr, indices)
+            else:
+                arr[k] = R[j]
+                j += 1
+                loop_called = take_screenshot(loop_called, arr, indices)
+            k += 1
+
+        while i < len (L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < len (R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
+        loop_called = take_screenshot(loop_called, arr, indices)
+
 # Binary Search Tree 
 class TreeNode:
     def __init__(self, val):
@@ -113,3 +151,4 @@ def bst_sort(arr):
         plt.savefig(f"saved_figures/fig_{loop_called}.png")
         loop_called += 1
     return loop_called
+

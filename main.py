@@ -132,6 +132,8 @@ def chooseAlgorithm():
         case "Quick Sort":
             pass
         case "Merge Sort":
+            totalImages = mergeSort(textA)
+            print(totalImages)
             pass
         case "Custom":
             pass
