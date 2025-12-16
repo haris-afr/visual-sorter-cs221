@@ -22,7 +22,7 @@ global totalImages
 global imageVar
 global imageTKVar
 currentImageIndex = 0
-totalImages = 19 # CHANGE
+totalImages = 10
 imageVar = Image.open(f"saved_figures/fig_eg.png")
 imageTKVar = ctk.CTkImage(light_image=imageVar, dark_image=imageVar, size=(400,350))
 imageLabel = ctk.CTkLabel(mainWindow, image=imageTKVar, text="")
@@ -99,7 +99,7 @@ def nextFrame():
     global currentImageIndex
     global totalImages
 
-    if (currentImageIndex == totalImages): return
+    if (currentImageIndex == (totalImages-1)): return
     currentImageIndex += 1
     loadImage()
 
@@ -119,9 +119,11 @@ def chooseAlgorithm():
             totalImages = bubble_sort(textA)
             print(totalImages)
         case "Insertion Sort":
-            pass
+            totalImages = insertion_sort(textA)
+            print(totalImages)
         case "Selection Sort":
-            pass
+            totalImages = selection_sort(textA)
+            print(totalImages)
         case "Count Sort":
             pass
         case "Quick Sort":

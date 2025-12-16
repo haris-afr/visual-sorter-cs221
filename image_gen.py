@@ -1,6 +1,12 @@
 import matplotlib.pyplot as plt #drawing/generating graphs
 import numpy as np #used for arrays
 
+def take_screenshot(loop_called, arr, indices):
+    plt.clf()
+    plt.bar(arr, indices)    
+    plt.savefig(f"saved_figures/fig_{loop_called}")
+    return (loop_called + 1)
+
 #Sorting Algorithms 
 def bubble_sort(arr):
     arr = np.array(arr)
@@ -11,15 +17,8 @@ def bubble_sort(arr):
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-            plt.clf()
-            plt.bar(arr, indices)    
-            plt.savefig(f"saved_figures/fig_{loop_called}")
-            loop_called += 1
-
-    plt.clf()
-    plt.bar(arr, indices)    
-    plt.savefig(f"saved_figures/fig_{loop_called}")
-    loop_called += 1
+            loop_called = take_screenshot(loop_called, arr, indices)
+    loop_called = take_screenshot(loop_called, arr, indices)
     return loop_called
 
 def insertion_sort(arr):
@@ -32,13 +31,15 @@ def insertion_sort(arr):
         j = i-1
         while j>=-1 and key < arr[j]:
             arr[j+1] = arr[j]
-            #Add screenshot here
+            loop_called = take_screenshot(loop_called, arr, indices)
             j-=1
         arr[j+1] = key
-        #Add screenshot here
-    #Final screenshot here
-   
-insertion_sort([10, 40, 60])
+        loop_called = take_screenshot(loop_called, arr, indices)
+    print(arr)
+    loop_called = take_screenshot(loop_called, arr, indices)
+    return loop_called
+
+print(insertion_sort([9, 8, 7, 6]))
 
 def selection_sort(arr):
     arr = np.array(arr)
@@ -48,23 +49,9 @@ def selection_sort(arr):
     for i in range(len(arr)):
         min_index = i
         for j in range(i+1,len(arr)):
-            #Add screenshot here
+            loop_called = take_screenshot(loop_called, arr, indices)
             if arr[j] < arr[min_index]:
                 min_index = j
         arr[i],arr[min_index] = arr[min_index],arr[i]
-        #Add screenshot here
-    #Final screenshot here
-   
-# def start_Algo():
-#     inputArr = [int(x) for x in arrayInputLabel.get().split(',')]
-#     algorithm = selectedAlg.get()
-
-#     if algorithm == "Bubble Sort":
-#         bubble_sort(inputArr)
-
-#     elif algorithm == "Insertion Sort":
-#         insertion_sort(inputArr)
-
-#     elif algorithm == "Selection Sort":
-#         selection_sort(inputArr)
-
+        loop_called = take_screenshot(loop_called, arr, indices)
+    loop_called = take_screenshot(loop_called, arr, indices)
