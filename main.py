@@ -11,15 +11,6 @@ mainWindow.geometry("600x400")
 algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "Count Sort",
                     "Merge Sort", "Quick Sort", "Custom"]
 selectedAlg = ctk.StringVar(value=algorithm_array[0])
-global selectedInfo
-
-
-def updateInfo(infoLabel):
-    index = algorithm_array.index(selectedAlg.get())
-    print(index)
-    selectedInfo.value = "h22i"
-    infoLabel.configure(text=selectedInfo.get()) 
-    print(selectedInfo.get())
 
 #loading fonts
 ctk.FontManager.load_font("fonts/Courier_Prime/CourierPrime.ttf")
@@ -38,8 +29,8 @@ headingLabel = ctk.CTkLabel(mainWindow, text="DSA Visualizer", font=heading_font
 
 algorithmFrame = ctk.CTkFrame(mainWindow, fg_color="transparent", )
 algorithmSelectLabel = ctk.CTkLabel(algorithmFrame, text="Select Algorithm", font=label_font)
-algorithmList = ctk.CTkComboBox(algorithmFrame, values=algorithm_array, variable=selectedAlg)
-algorithmList.bind("<<ComboBoxSelected>>", lambda: print(selectedAlg))
+algorithmList = ctk.CTkComboBox(algorithmFrame, values=algorithm_array, variable=selectedAlg, 
+                                command=lambda event: print(selectedAlg.get()))
 
 arrayFrame = ctk.CTkFrame(mainWindow, fg_color="transparent")
 arrayInputLabel = ctk.CTkLabel(arrayFrame, text="Input Array", font=label_font)
