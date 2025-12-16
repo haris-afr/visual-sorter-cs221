@@ -23,6 +23,8 @@ sizeA = len(values)
 plt.ioff()
 plt.draw()
 
+loop_called = 0
+
 #test using binary sort
 for i in range(sizeA):
     inner_loop_called = 0
@@ -34,6 +36,7 @@ for i in range(sizeA):
             inner_loop_called = 1
         plt.clf()
         plt.bar(values, indices)    
-        plt.savefig(f"visual-sorter-cs221/saved_figures/fig_{i}_{j}")
+        plt.savefig(f"saved_figures/fig_{loop_called}")
+        loop_called += 1
     if (inner_loop_called == 0):
         break

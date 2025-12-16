@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import font
 import customtkinter as ctk
+from PIL import Image, ImageTk
 import re #regex
 
 #creating window
@@ -13,6 +14,15 @@ algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "Count Sor
                     "Merge Sort", "Quick Sort", "Custom"]
 selectedAlg = ctk.StringVar()
 textA = ""
+
+global currentImageIndex
+global totalImages
+global imageVar
+global imageTKVar
+currentImageIndex = 0
+totalImages = 19 # CHANGE
+imageVar = Image.open(f"saved_figures/fig_{currentImageIndex}.png")
+imageTKVar = ctk.CTkImage(light_image=imageVar, dark_image=imageVar, size=(400,350))
 
 #loading fonts
 ctk.FontManager.load_font("fonts/Courier_Prime/CourierPrime.ttf")
@@ -36,12 +46,14 @@ def changeToScene2():
     arrayFrame.pack_forget()
     runButton.pack_forget()
 
+    imageLabel.pack()
     backBtn.pack(side="left")
     prevBtn.pack(side="left")
     nextBtn.pack(side="left")
     buttonsFrame.pack()
 
 def changeToScene1():
+    imageLabel.pack_forget()
     backBtn.pack_forget()
     prevBtn.pack_forget()
     nextBtn.pack_forget()
@@ -57,7 +69,6 @@ def changeToScene1():
     arrayFrame.pack(pady='15px')
     runButton.pack()
 
-
 def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel):
     global textA
     textA = textbox.get('0.0', 'end')
@@ -69,11 +80,29 @@ def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel):
         changeToScene2()
         return textA
 
+def loadImage():
+    global currentImageIndex
+    global imageVar
+    global imageTKVar
+    global imageLabel
+    imageVar = Image.open(f"saved_figures/fig_{currentImageIndex}.png")
+    imageTKVar.configure(light_image=imageVar, dark_image=imageVar, size=(400,350))
+    print(currentImageIndex)
+
+
 def nextFrame():
-    pass
+    global currentImageIndex
+    global totalImages
+
+    if (currentImageIndex == totalImages): return
+    currentImageIndex += 1
+    loadImage()
 
 def prevFrame():
-    pass
+    global currentImageIndex
+    if (currentImageIndex <= 0): return
+    currentImageIndex -= 1
+    loadImage()
 
 #creating elements
 headingLabel = ctk.CTkLabel(mainWindow, text="DSA Visualizer", font=heading_font)
@@ -93,14 +122,15 @@ runButton = ctk.CTkButton(mainWindow, text='Run', command=lambda: getText(arrayT
 
 #creating elements for scene 2
 #image
+imageLabel = ctk.CTkLabel(mainWindow, image=imageTKVar, text="")
 buttonsFrame = ctk.CTkFrame(mainWindow, fg_color="transparent")
-prevBtn = ctk.CTkButton(buttonsFrame, text="<", command=lambda: prevFrame)
-nextBtn = ctk.CTkButton(buttonsFrame, text=">", command=lambda: nextFrame)
+prevBtn = ctk.CTkButton(buttonsFrame, text="<", command=lambda: prevFrame())
+nextBtn = ctk.CTkButton(buttonsFrame, text=">", command=lambda: nextFrame())
 backBtn = ctk.CTkButton(buttonsFrame, text="Go Back", command=lambda: changeToScene1())
 
 
 #displaying all of the elements
-
+imageLabel.pack()
 backBtn.pack(side="left")
 prevBtn.pack(side="left")
 nextBtn.pack(side="left")
