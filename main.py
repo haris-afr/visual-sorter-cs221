@@ -36,7 +36,17 @@ def changeToScene2():
     arrayFrame.pack_forget()
     runButton.pack_forget()
 
+    backBtn.pack(side="left")
+    prevBtn.pack(side="left")
+    nextBtn.pack(side="left")
+    buttonsFrame.pack()
+
 def changeToScene1():
+    backBtn.pack_forget()
+    prevBtn.pack_forget()
+    nextBtn.pack_forget()
+    buttonsFrame.pack_forget()
+
     headingLabel.pack(pady="10px")
     elementPadding = 10
     algorithmSelectLabel.pack(side="left", padx=f"{elementPadding}px")
@@ -46,7 +56,6 @@ def changeToScene1():
     arrayTextBox.pack()
     arrayFrame.pack(pady='15px')
     runButton.pack()
-
 
 
 def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel):
@@ -60,7 +69,11 @@ def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel):
         changeToScene2()
         return textA
 
+def nextFrame():
+    pass
 
+def prevFrame():
+    pass
 
 #creating elements
 headingLabel = ctk.CTkLabel(mainWindow, text="DSA Visualizer", font=heading_font)
@@ -79,9 +92,20 @@ errorLabel = ctk.CTkLabel(mainWindow, text="Error! Incorrect Array!", font=label
 runButton = ctk.CTkButton(mainWindow, text='Run', command=lambda: getText(arrayTextBox, errorLabel))
 
 #creating elements for scene 2
+#image
+buttonsFrame = ctk.CTkFrame(mainWindow, fg_color="transparent")
+prevBtn = ctk.CTkButton(buttonsFrame, text="<", command=lambda: prevFrame)
+nextBtn = ctk.CTkButton(buttonsFrame, text=">", command=lambda: nextFrame)
+backBtn = ctk.CTkButton(buttonsFrame, text="Go Back", command=lambda: changeToScene1())
 
 
 #displaying all of the elements
+
+backBtn.pack(side="left")
+prevBtn.pack(side="left")
+nextBtn.pack(side="left")
+buttonsFrame.pack()
+
 # headingLabel.pack(pady="10px")
 
 # elementPadding = 10
