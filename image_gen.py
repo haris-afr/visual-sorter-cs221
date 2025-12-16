@@ -54,4 +54,12 @@ def selection_sort(arr):
         arr[i],arr[min_index] = arr[min_index],arr[i]
         loop_called = take_screenshot(loop_called, arr, indices)
     loop_called = take_screenshot(loop_called, arr, indices)
-print(bubble_sort([9, 8, 7, 6, 10, 2]))
+    return loop_called
+
+# Binary Search Tree 
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
