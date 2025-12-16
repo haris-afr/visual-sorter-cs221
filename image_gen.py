@@ -29,13 +29,12 @@ def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
         j = i-1
-        while j>=-1 and key < arr[j]:
+        while j>=0 and key < arr[j]:
             arr[j+1] = arr[j]
             loop_called = take_screenshot(loop_called, arr, indices)
             j-=1
         arr[j+1] = key
         loop_called = take_screenshot(loop_called, arr, indices)
-    print(arr)
     loop_called = take_screenshot(loop_called, arr, indices)
     return loop_called
 
