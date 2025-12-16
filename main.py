@@ -58,9 +58,11 @@ def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
         for j in range(0, n-i-1):
+            #Add screenshot here
             if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-    return arr
+            #Add screenshot here
+    #Final screenshot here
 
 
 def insertion_sort(arr):
@@ -69,18 +71,24 @@ def insertion_sort(arr):
         j = i-1
         while j>=-1 and key < arr[j]:
             arr[j+1] = arr[j]
+            #Add screenshot here
             j-=1
         arr[j+1] = key
-    return arr
+        #Add screenshot here
+    #Final screenshot here
+   
 
 def selection_sort(arr):
     for i in range(len(arr)):
         min_index = i
         for j in range(i+1,len(arr)):
+            #Add screenshot here
             if arr[j] < arr[min_index]:
                 min_index = j
         arr[i],arr[min_index] = arr[min_index],arr[i]
-    return arr
+        #Add screenshot here
+    #Final screenshot here
+   
 
 
 mainWindow.mainloop()
