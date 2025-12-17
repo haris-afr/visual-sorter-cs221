@@ -58,43 +58,70 @@ def selection_sort(arr):
     pictures_taken = take_screenshot(pictures_taken, arr, indices)
     return pictures_taken
 
-def mergeSort (arr):
+def mergeSort_front(arr):
+    """The function main.py calls."""
     arr = np.array(arr)
-    indices = np.array([i+1 for i in range(len(arr))])
+    n = len(arr)
+    indices = np.array([i+1 for i in range(n)])
     loop_called = 0
 
-    if len (arr) > 1:
-        mid = len (arr) // 2
-        L = arr[:mid]
-        R = arr[mid:]
+    loop_called = take_screenshot(loop_called, arr, indices)
+    
+    # Start the recursion on the full array
+    loop_called = mergeSort_back(arr, 0, n - 1, indices, loop_called)
+    
+    # Final 'sorted' screenshot
+    loop_called = take_screenshot(loop_called, arr, indices)
+    return loop_called
 
-        mergeSort (L)
-        mergeSort (R)
+def mergeSort_back (arr, low, high, indices, loop_called):
+    if low < high:
+        mid = (low + high) // 2
+        
+        # Recursively sort halves
+        loop_called = mergeSort_back(arr, low, mid, indices, loop_called)
+        loop_called = mergeSort_back(arr, mid + 1, high, indices, loop_called)
+        
+        # Merge the sorted halves
+        loop_called = merge(arr, low, mid, high, indices, loop_called)
+        
+    return loop_called
 
-        i = j = k = 0
-
-        while i < len (L) and j < len (R):
-            if L[i] < R[j]:
-                arr[k] = L[i]
-                i += 1
-                loop_called = take_screenshot(loop_called, arr, indices)
-            else:
-                arr[k] = R[j]
-                j += 1
-                loop_called = take_screenshot(loop_called, arr, indices)
-            k += 1
-
-        while i < len (L):
-            arr[k] = L[i]
+def merge(arr, low, mid, high, indices, loop_called):
+    # Create temporary copies of the sub-arrays
+    left_part = arr[low : mid + 1].copy()
+    right_part = arr[mid + 1 : high + 1].copy()
+    
+    i = 0 # pointer for left_part
+    j = 0 # pointer for right_part
+    k = low # pointer for the original 'arr'
+    
+    while i < len(left_part) and j < len(right_part):
+        if left_part[i] <= right_part[j]:
+            arr[k] = left_part[i]
             i += 1
-            k += 1
-
-        while j < len (R):
-            arr[k] = R[j]
+        else:
+            arr[k] = right_part[j]
             j += 1
-            k += 1
-
+        
+        # Take a screenshot of the WHOLE array after every single placement
         loop_called = take_screenshot(loop_called, arr, indices)
+        k += 1
+        
+    # Clean up remaining elements
+    while i < len(left_part):
+        arr[k] = left_part[i]
+        i += 1
+        k += 1
+        loop_called = take_screenshot(loop_called, arr, indices)
+        
+    while j < len(right_part):
+        arr[k] = right_part[j]
+        j += 1
+        k += 1
+        loop_called = take_screenshot(loop_called, arr, indices)
+        
+    return loop_called
 
 # Binary Search Tree 
 class TreeNode:
