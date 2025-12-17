@@ -18,6 +18,7 @@ def bubble_sort(arr):
     n = len(arr)
     indices = np.array([i+1 for i in range(n)])
     pictures_taken = 0
+    pictures_taken = take_screenshot(pictures_taken, arr, indices)
     for i in range(n):
         for j in range(0, n-i-1):
             if arr[j] > arr[j+1]:
