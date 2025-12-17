@@ -23,7 +23,7 @@ mainWindow.title("DSA Visualizer")
 mainWindow.geometry("600x400")
 
 #creating list of algorithms
-algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "BST", "Count Sort",
+algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "BST",
                     "Merge Sort", "Quick Sort", "Custom"]
 selectedAlg = ctk.StringVar()
 textA = ""
@@ -134,9 +134,9 @@ def chooseAlgorithm():
             totalImages = selection_sort(textA)
         case "BST":
             totalImages = bst_sort(textA)
-        case "Count Sort":
-            pass
         case "Quick Sort":
+            totalImages = quick_sort_front(textA)
+            print(f"Quick Sort generated {totalImages} frames.")
             pass
         case "Merge Sort":
             totalImages = mergeSort_front(textA)
