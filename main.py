@@ -132,7 +132,7 @@ def chooseAlgorithm():
         case "Quick Sort":
             pass
         case "Merge Sort":
-            totalImages = mergeSort(textA)
+            totalImages = mergeSort_front(textA)
             print(totalImages)
             pass
         case "Custom":
