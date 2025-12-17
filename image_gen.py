@@ -131,7 +131,6 @@ def merge(arr, low, mid, high, indices, loop_called):
     loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
     return loop_called
 
-mergeSort_front([10, 8, 7, 3])
 
 # QuickSort
 
@@ -240,6 +239,7 @@ def bst_sort(arr):
     return loop_called
 
 def count_sort(arr):
+    arr = [int(i) for i in arr] #convert non ints to ints
     arr = np.array(arr)
     n = len(arr)
     indices = np.array([i+1 for i in range(n)])
@@ -247,16 +247,17 @@ def count_sort(arr):
     
     max_val = max(arr)
     count = [0] * (max_val + 1)
+    c_indices = np.array([i+1 for i in range(max_val + 1)])
     output = [0] * len(arr)
 
     loop_called = take_screenshot(loop_called, arr, indices)
 
     for num in arr:
         count[num] += 1
-
+    loop_called = take_screenshot(loop_called, count, c_indices)
     for i in range(1, len(count)):
         count[i] += count[i - 1]
-        loop_called = take_screenshot(loop_called, arr, indices)
+    
 
     for num in reversed(arr):
         output[count[num] - 1] = num
