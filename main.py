@@ -140,7 +140,6 @@ def chooseAlgorithm():
             totalImages = count_sort(textA)
         case "Quick Sort":
             totalImages = quick_sort_front(textA)
-            print(f"Quick Sort generated {totalImages} frames.")
             pass
         case "Merge Sort":
             totalImages = mergeSort_front(textA)

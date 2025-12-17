@@ -3,6 +3,7 @@ import numpy as np #used for arrays
 
 #At certain intervals, a screenshot of the algorithm is saved using matplotlib
 def take_screenshot(pictures_taken, arr, indices):
+    if (len(arr) == 0): return pictures_taken 
     plt.clf()
     barC = plt.bar(indices, arr, width=2/len(arr))
     plt.bar_label(barC, arr)
@@ -89,10 +90,12 @@ def mergeSort_back (arr, low, high, indices, loop_called):
         # Recursively sort halves
         loop_called = mergeSort_back(arr, low, mid, indices, loop_called)
         loop_called = mergeSort_back(arr, mid + 1, high, indices, loop_called)
-        
+        loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
+
         # Merge the sorted halves
         loop_called = merge(arr, low, mid, high, indices, loop_called)
-        
+        loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
+
     return loop_called
 
 def merge(arr, low, mid, high, indices, loop_called):
@@ -111,9 +114,7 @@ def merge(arr, low, mid, high, indices, loop_called):
         else:
             arr[k] = right_part[j]
             j += 1
-        
-        # Take a screenshot of the WHOLE array after every single placement
-        loop_called = take_screenshot(loop_called, arr, indices)
+        loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
         k += 1
         
     # Clean up remaining elements
@@ -121,15 +122,16 @@ def merge(arr, low, mid, high, indices, loop_called):
         arr[k] = left_part[i]
         i += 1
         k += 1
-        loop_called = take_screenshot(loop_called, arr, indices)
         
     while j < len(right_part):
         arr[k] = right_part[j]
         j += 1
         k += 1
-        loop_called = take_screenshot(loop_called, arr, indices)
-        
+    
+    loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
     return loop_called
+
+mergeSort_front([10, 8, 7, 3])
 
 # QuickSort
 
