@@ -1,11 +1,14 @@
+
+#<<<<<<<<<<<< HEAD
 import tkinter as tk
 from tkinter import font #for fonts
 import customtkinter as ctk #main GUI library
 from PIL import Image #for image 
-from image_gen import * #import functions from other file
 import re #regex for checking array
+from image_gen import * #import functions from other file
+from custom_sort import *
 from ast import literal_eval #convert string array into actual array
-
+#==============
 #This project requires the user to download the following libraries from pip
 # pillow (used for image display)
 # customtkinter (used for GUI)
@@ -14,7 +17,7 @@ from ast import literal_eval #convert string array into actual array
 
 #The project should be loaded in VS Code, with the visual-sroter-221 folder opened
 
-#creating window for CTK
+#creating window for CTK 
 mainWindow = ctk.CTk()
 mainWindow.title("DSA Visualizer")
 mainWindow.geometry("600x400")
@@ -139,6 +142,7 @@ def chooseAlgorithm():
             totalImages = mergeSort(textA)
             pass
         case "Custom":
+            totalImages = custom_sort(textA)
             pass
         case "":
             pass
