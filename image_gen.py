@@ -10,6 +10,9 @@ def take_screenshot(pictures_taken, arr, indices):
     return (pictures_taken + 1)
 
 #Sorting Algorithms 
+
+# Bubble Sort
+
 def bubble_sort(arr):
     arr = np.array(arr)
     n = len(arr)
@@ -22,6 +25,8 @@ def bubble_sort(arr):
             pictures_taken = take_screenshot(pictures_taken, arr, indices)
     pictures_taken = take_screenshot(pictures_taken, arr, indices)
     return pictures_taken
+
+# Insertion Sort
 
 def insertion_sort(arr):
     arr = np.array(arr)
@@ -41,6 +46,7 @@ def insertion_sort(arr):
     pictures_taken = take_screenshot(pictures_taken, arr, indices)
     return pictures_taken
 
+# Selection Sort
 
 def selection_sort(arr):
     arr = np.array(arr)
@@ -57,6 +63,8 @@ def selection_sort(arr):
         pictures_taken = take_screenshot(pictures_taken, arr, indices)
     pictures_taken = take_screenshot(pictures_taken, arr, indices)
     return pictures_taken
+
+# Merge Sort
 
 def mergeSort_front(arr):
     """The function main.py calls."""
@@ -122,6 +130,54 @@ def merge(arr, low, mid, high, indices, loop_called):
         loop_called = take_screenshot(loop_called, arr, indices)
         
     return loop_called
+
+# QuickSort
+
+def quick_sort_front(arr):
+    """The function main.py calls."""
+    arr = np.array(arr)
+    n = len(arr)
+    indices = np.array([i+1 for i in range(n)])
+    loop_called = 0
+    
+    # Initial  screenshot
+    loop_called = take_screenshot(loop_called, arr, indices)
+    
+    # Start recursion
+    loop_called = quick_sort_back(arr, 0, n - 1, indices, loop_called)
+    
+    # Final sorted state
+    loop_called = take_screenshot(loop_called, arr, indices)
+    return loop_called
+
+def quick_sort_back(arr, low, high, indices, loop_called):
+    if low < high:
+        # Partition the array and get the pivot index
+        pivot_index, loop_called = partition(arr, low, high, indices, loop_called)
+        
+        # Recursively sort elements before and after partition
+        loop_called = quick_sort_back(arr, low, pivot_index - 1, indices, loop_called)
+        loop_called = quick_sort_back(arr, pivot_index + 1, high, indices, loop_called)
+        
+    return loop_called
+
+def partition(arr, low, high, indices, loop_called):
+    pivot = arr[high] # Choosing the last element as pivot
+    i = low - 1 # Index of smaller element
+    
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i] # Swap
+            
+            # Take screenshot after every swap to show movement
+            loop_called = take_screenshot(loop_called, arr, indices)
+            
+    # Swap the pivot element to its correct position
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    loop_called = take_screenshot(loop_called, arr, indices)
+    
+    return i + 1, loop_called
 
 # Binary Search Tree 
 class TreeNode:

@@ -1,5 +1,4 @@
 
-#<<<<<<<<<<<< HEAD
 import tkinter as tk
 from tkinter import font #for fonts
 import customtkinter as ctk #main GUI library
@@ -23,7 +22,7 @@ mainWindow.title("DSA Visualizer")
 mainWindow.geometry("600x400")
 
 #creating list of algorithms
-algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "BST", "Count Sort",
+algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "BST",
                     "Merge Sort", "Quick Sort", "Custom"]
 selectedAlg = ctk.StringVar()
 textA = ""
@@ -140,6 +139,8 @@ def chooseAlgorithm():
         case "Count Sort":
             totalImages = count_sort(textA)
         case "Quick Sort":
+            totalImages = quick_sort_front(textA)
+            print(f"Quick Sort generated {totalImages} frames.")
             pass
         case "Merge Sort":
             totalImages = mergeSort_front(textA)
