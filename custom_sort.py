@@ -17,6 +17,13 @@ def custom_sort(arr):
 
     #write code here-----
 
+    #reverse bubble sort written as placeholder
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] < arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+            pictures_taken = take_screenshot(pictures_taken, arr, indices)
+
     #--------------------
 
     return pictures_taken
