@@ -4,6 +4,7 @@ import customtkinter as ctk
 from PIL import Image
 import re #regex
 from image_gen import *
+from custom_sort import *
 from ast import literal_eval
 
 #creating window
@@ -136,6 +137,7 @@ def chooseAlgorithm():
             print(totalImages)
             pass
         case "Custom":
+            totalImages = custom_sort(textA)
             pass
         case "":
             pass
