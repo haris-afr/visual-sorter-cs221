@@ -138,7 +138,7 @@ def chooseAlgorithm():
         case "BST":
             totalImages = bst_sort(textA)
         case "Count Sort":
-            pass
+            totalImages = count_sort(textA)
         case "Quick Sort":
             pass
         case "Merge Sort":
@@ -147,7 +147,8 @@ def chooseAlgorithm():
         case "Custom":
             totalImages = custom_sort(textA)
         case "":
-            pass
+            changeToScene1()
+            errorLabel.pack()
 
 
 #creating elements
