@@ -1,12 +1,20 @@
 import tkinter as tk
-from tkinter import font
+from tkinter import font #for fonts
 import customtkinter as ctk #main GUI library
 from PIL import Image #for image 
 from image_gen import * #import functions from other file
 import re #regex for checking array
 from ast import literal_eval #convert string array into actual array
 
-#creating window
+#This project requires the user to download the following libraries from pip
+# pillow (used for image display)
+# customtkinter (used for GUI)
+# numpy (used for storing arrays)
+# matplotlib (used for image generation & saving)
+
+#The project should be loaded in VS Code, with the visual-sroter-221 folder opened
+
+#creating window for CTK
 mainWindow = ctk.CTk()
 mainWindow.title("DSA Visualizer")
 mainWindow.geometry("600x400")
@@ -17,6 +25,7 @@ algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "BST", "Co
 selectedAlg = ctk.StringVar()
 textA = ""
 
+#variable declaration and initialization
 global currentImageIndex
 global totalImages
 global imageVar
@@ -39,7 +48,7 @@ else: #Fall back font
     info_font = ctk.CTkFont(family="Courier New Bold", size=14)
 
 #declaring functions
-def changeToScene2():
+def changeToScene2(): #called when the run button gets called without error
     headingLabel.pack_forget()
     algorithmSelectLabel.pack_forget()
     algorithmList.pack_forget()
@@ -58,7 +67,7 @@ def changeToScene2():
     nextBtn.pack(side="left")
     buttonsFrame.pack()
 
-def changeToScene1():
+def changeToScene1(): #called when the back button is pressed
     imageLabel.pack_forget()
     backBtn.pack_forget()
     prevBtn.pack_forget()
@@ -66,16 +75,15 @@ def changeToScene1():
     buttonsFrame.pack_forget()
 
     headingLabel.pack(pady="10px")
-    elementPadding = 10
-    algorithmSelectLabel.pack(side="left", padx=f"{elementPadding}px")
-    algorithmList.pack(side="left", padx=f"{elementPadding}px")
+    algorithmSelectLabel.pack(side="left", padx="10px")
+    algorithmList.pack(side="left", padx="10px")
     algorithmFrame.pack(pady="15px")
     arrayInputLabel.pack(side="left")
     arrayTextBox.pack()
     arrayFrame.pack(pady='15px')
     runButton.pack()
 
-def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel):
+def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel): #used for getting and checking array input
     global textA
     textA = textbox.get('0.0', 'end')
     textA = re.findall("^\[\d+(?:,\s*\d+)*\]$", textA) # type: ignore
@@ -86,7 +94,7 @@ def getText(textbox: ctk.CTkTextbox, errorLabel:ctk.CTkLabel):
         changeToScene2()
         return textA
 
-def loadImage():
+def loadImage(): #used everytime an image is loaded
     global currentImageIndex
     global imageVar
     global imageTKVar
@@ -95,7 +103,7 @@ def loadImage():
     imageTKVar.configure(light_image=imageVar, dark_image=imageVar, size=(400,350))
     print(currentImageIndex)
 
-def nextFrame():
+def nextFrame(): #used when the next button is pressed
     global currentImageIndex
     global totalImages
 
@@ -103,7 +111,7 @@ def nextFrame():
     currentImageIndex += 1
     loadImage()
 
-def prevFrame():
+def prevFrame(): #take a wild guess
     global currentImageIndex
     if (currentImageIndex <= 0): return
     currentImageIndex -= 1
@@ -117,23 +125,18 @@ def chooseAlgorithm():
     match(selectedAlg.get()):
         case "Bubble Sort":
             totalImages = bubble_sort(textA)
-            print(totalImages)
         case "Insertion Sort":
             totalImages = insertion_sort(textA)
-            print(totalImages)
         case "Selection Sort":
             totalImages = selection_sort(textA)
-            print(totalImages)
         case "BST":
             totalImages = bst_sort(textA)
-            print(totalImages)
         case "Count Sort":
             pass
         case "Quick Sort":
             pass
         case "Merge Sort":
             totalImages = mergeSort(textA)
-            print(totalImages)
             pass
         case "Custom":
             pass
@@ -146,8 +149,7 @@ headingLabel = ctk.CTkLabel(mainWindow, text="DSA Visualizer", font=heading_font
 
 algorithmFrame = ctk.CTkFrame(mainWindow, fg_color="transparent", )
 algorithmSelectLabel = ctk.CTkLabel(algorithmFrame, text="Select Algorithm", font=label_font)
-algorithmList = ctk.CTkComboBox(algorithmFrame, values=algorithm_array, variable=selectedAlg, 
-                                command=lambda event: print(selectedAlg.get()))
+algorithmList = ctk.CTkComboBox(algorithmFrame, values=algorithm_array, variable=selectedAlg)
 
 arrayFrame = ctk.CTkFrame(mainWindow, fg_color="transparent")
 arrayInputLabel = ctk.CTkLabel(arrayFrame, text="Input Array", font=label_font)
@@ -167,16 +169,12 @@ backBtn = ctk.CTkButton(buttonsFrame, text="Go Back", command=lambda: changeToSc
 
 #displaying all of the elements
 headingLabel.pack(pady="10px")
-
-elementPadding = 10
-algorithmSelectLabel.pack(side="left", padx=f"{elementPadding}px")
-algorithmList.pack(side="left", padx=f"{elementPadding}px")
+algorithmSelectLabel.pack(side="left", padx="10px")
+algorithmList.pack(side="left", padx="10px")
 algorithmFrame.pack(pady="15px")
-
 arrayInputLabel.pack(side="left")
 arrayTextBox.pack()
 arrayFrame.pack(pady='15px')
-
 runButton.pack()
 
 
