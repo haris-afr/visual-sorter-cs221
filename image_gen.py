@@ -181,3 +181,33 @@ def bst_sort(arr):
         loop_called += 1
     return loop_called
 
+def count_sort(arr):
+    arr = np.array(arr)
+    n = len(arr)
+    indices = np.array([i+1 for i in range(n)])
+    loop_called = 0
+    
+    max_val = max(arr)
+    count = [0] * (max_val + 1)
+    output = [0] * len(arr)
+
+    loop_called = take_screenshot(loop_called, arr, indices)
+
+    for num in arr:
+        count[num] += 1
+
+    for i in range(1, len(count)):
+        count[i] += count[i - 1]
+        loop_called = take_screenshot(loop_called, arr, indices)
+
+    for num in reversed(arr):
+        output[count[num] - 1] = num
+        count[num] -= 1
+
+    for i in range(len(arr)):
+        arr[i] = output[i]
+        loop_called = take_screenshot(loop_called, arr, indices)
+
+    loop_called = take_screenshot(loop_called, arr, indices)
+    return loop_called
+
