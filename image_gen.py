@@ -54,17 +54,18 @@ def selection_sort(arr):
     n = len(arr)
     indices = np.array([i+1 for i in range(n)])
     pictures_taken = 0
+    pictures_taken = take_screenshot(pictures_taken, arr, indices)
     for i in range(len(arr)):
         min_index = i
         for j in range(i+1,len(arr)):
-            pictures_taken = take_screenshot(pictures_taken, arr, indices)
+            # pictures_taken = take_screenshot(pictures_taken, arr, indices)
             if arr[j] < arr[min_index]:
                 min_index = j
         arr[i],arr[min_index] = arr[min_index],arr[i]
         pictures_taken = take_screenshot(pictures_taken, arr, indices)
     pictures_taken = take_screenshot(pictures_taken, arr, indices)
     return pictures_taken
-
+selection_sort([10, 6, 4, 1])
 # Merge Sort
 
 def mergeSort_front(arr):

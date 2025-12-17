@@ -23,7 +23,7 @@ mainWindow.geometry("600x400")
 
 #creating list of algorithms
 algorithm_array = ["Bubble Sort", "Insertion Sort", "Selection Sort", "BST",
-                    "Merge Sort", "Quick Sort", "Custom"]
+                    "Merge Sort", "Quick Sort", "Count Sort", "Custom"]
 selectedAlg = ctk.StringVar()
 textA = ""
 
