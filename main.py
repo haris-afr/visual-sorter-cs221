@@ -71,11 +71,14 @@ def changeToScene2(): #called when the run button gets called without error
     buttonsFrame.pack()
 
 def changeToScene1(): #called when the back button is pressed
+    global currentImageIndex
     imageLabel.pack_forget()
     backBtn.pack_forget()
     prevBtn.pack_forget()
     nextBtn.pack_forget()
     buttonsFrame.pack_forget()
+
+    currentImageIndex = 0
 
     headingLabel.pack(pady="10px")
     algorithmSelectLabel.pack(side="left", padx="10px")
