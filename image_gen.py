@@ -65,6 +65,7 @@ def selection_sort(arr):
         pictures_taken = take_screenshot(pictures_taken, arr, indices)
     pictures_taken = take_screenshot(pictures_taken, arr, indices)
     return pictures_taken
+
 # Merge Sort
 
 def mergeSort_front(arr):
@@ -90,12 +91,10 @@ def mergeSort_back (arr, low, high, indices, loop_called):
         # Recursively sort halves
         loop_called = mergeSort_back(arr, low, mid, indices, loop_called)
         loop_called = mergeSort_back(arr, mid + 1, high, indices, loop_called)
-        loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
-
+        
         # Merge the sorted halves
         loop_called = merge(arr, low, mid, high, indices, loop_called)
-        loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
-
+        
     return loop_called
 
 def merge(arr, low, mid, high, indices, loop_called):
@@ -114,7 +113,9 @@ def merge(arr, low, mid, high, indices, loop_called):
         else:
             arr[k] = right_part[j]
             j += 1
-        loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
+        
+        # Take a screenshot of the WHOLE array after every single placement
+        loop_called = take_screenshot(loop_called, arr, indices)
         k += 1
         
     # Clean up remaining elements
@@ -122,15 +123,15 @@ def merge(arr, low, mid, high, indices, loop_called):
         arr[k] = left_part[i]
         i += 1
         k += 1
+        loop_called = take_screenshot(loop_called, arr, indices)
         
     while j < len(right_part):
         arr[k] = right_part[j]
         j += 1
         k += 1
-    
-    loop_called = take_screenshot(loop_called, arr[low:high-1], indices[low:high-1])
+        loop_called = take_screenshot(loop_called, arr, indices)
+        
     return loop_called
-
 
 # QuickSort
 
