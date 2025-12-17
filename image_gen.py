@@ -215,12 +215,12 @@ def bst_sort(arr):
             while True:
                 if num < curr.val:
                     if curr.left is None:
-                        curr.left = TreeNode(num)
+                        curr.left = TreeNode(num) # type: ignore
                         break
                     curr = curr.left
                 else:
                     if curr.right is None:
-                        curr.right = TreeNode(num)
+                        curr.right = TreeNode(num) # type: ignore
                         break
                     curr = curr.right
 
